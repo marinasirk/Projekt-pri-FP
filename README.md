@@ -1,2 +1,2 @@
-# Projekt-pri-FP-tema-3
+# Projekt pri FP
 Monochromatic and bichromatic shortest matching
