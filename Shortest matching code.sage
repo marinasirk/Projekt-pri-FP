@@ -1,7 +1,6 @@
 import random
 import math
 import numpy
-from sage.plot.point import Point
 
 # funkcija tocke(n, a, b) nam da seznam nakljucnih tock v ravnini
 # nakljucno izberemo 2n tock v ravnini, n je poljuben
