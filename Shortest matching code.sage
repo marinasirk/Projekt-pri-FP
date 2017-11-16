@@ -45,7 +45,7 @@ def matrika_povezav(points):
 
 
 # v naslednji vrstici si izberemo poljuben n, a in b, to je vse kar moramo narediti, potem samo še zaženemo program
-t = tocke(n=2, a=0, b=10)
+t = tocke(n=5, a=0, b=10)
 A = matrika_povezav(t)
 d = len(A)
 print "Tocke = ", t
@@ -66,12 +66,12 @@ p.set_objective(sum(sum(A[i][j]*X[i, j] for j in range(i, d)) for i in range(d))
 for i in range(d):
     p.add_constraint(sum(X[i, j] for j in range(d)) == 1)
 
-# pogoj 3 poskrbi, da je matrika X simetricna
+# pogoj 2 poskrbi, da je matrika X simetricna
 for i in range(d):
     for j in range(d):
         p.add_constraint(X[i, j] == X[j, i])
 
-# pogoj 4 poskrbi, da so diagonalne vrednosti enake 0, torej tocka ne sme biti povezana sama s sabo
+# pogoj 3 poskrbi, da so diagonalne vrednosti enake 0, torej tocka ne sme biti povezana sama s sabo
 for i in range(d):
     p.add_constraint(X[i, i] == 0)
 
@@ -111,7 +111,7 @@ for j in range(d/2):
     q.add_constraint(sum(Y[i, j] for i in range(d/2)) == 1)        # vsota po vrsticah enaka 0
 
 min_dolzina2 = q.solve()
-print "Resitev problema 2: ", min_dolzina1
+print "Resitev problema 2: ", min_dolzina2
 
 resitev2 = q.get_values(Y)
 
