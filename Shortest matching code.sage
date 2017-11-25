@@ -1,5 +1,5 @@
-#koda je dostopna tudi na spletni strani: 
-#https://cocalc.com/projects/2af3130d-ead8-41f2-8233-c9312182d6a7/files/Shortest%20matching.sagews?session=default
+# koda je dostopna tudi na spletni strani: 
+# https://cocalc.com/projects/2af3130d-ead8-41f2-8233-c9312182d6a7/files/Shortest%20matching.sagews?session=default
 
 import random
 import math
