@@ -1,0 +1,113 @@
+require("dplyr")
+require("readr")
+
+razlicenN<- read.csv("resitve_razlicen_n - Copy.csv", header = FALSE, col.names = c("n", "Problem", "Resitev"))
+prebarvane<- read.csv("resitve_prebarvanje - Copy.csv", header = FALSE, col.names = c("n", "Problem", "Resitev"))
+
+
+#RAZLICNO POBARVANI (n=10, n=100)
+
+#povprecje, min, max, varianca
+
+#n=10 
+v1 <- prebarvane$Resitev[2:101]
+povprecje10 <- mean(v1)
+min10 <- min(v1)
+max10 <- max(v1)
+varianca10 <- var(v1)
+#n=100
+v2 <- prebarvane$Resitev[103:202]
+povprecje100 <- mean(v2)
+min100 <- min(v2)
+max100 <- max(v2)
+varianca100 <- var(v2)
+
+#graf
+
+#n=10
+p10 <- prebarvane[2:101, 3]
+plot(p10, xlab = "Število ponovitev", ylab = "Rešitev problema 2", col="blue", 
+     main = "Sprememba rešitve problema 2 za n=10", pch=19)
+#n=100
+p100 <- prebarvane[103:202, 3]
+plot(p100, xlab = "Število ponovitev", ylab = "Rešitev problema 2", col="red",
+     main = "Sprememba rešitve problema 2 za n=100", pch=19)
+
+
+#RAZLICEN n (n=10, n=50, n=100, n=150, n=200, n=300, n=400, n=500, n=600)
+
+#n=10
+v10 <- razlicenN[1:200, 3]
+pr10ena <- v10*c(TRUE,FALSE)  #resitve problema 1 za n=10
+povpr10ena <- sum(pr10ena)/100  #povprecje resitev problema 1 za n=10
+pr10dva <- v10*c(FALSE,TRUE)  #resitve problema 2 za n=10
+povpr10dva <- sum(pr10dva)/100  ##povprecje resitev problema 2 za n=10
+
+#n=50
+v50 <- razlicenN[201:400,3]
+pr50ena <- v50*c(TRUE,FALSE) 
+povpr50ena <- sum(pr50ena)/100  
+pr50dva <- v50*c(FALSE,TRUE)
+povpr50dva <- sum(pr50dva)/100
+
+#n=100
+v100 <- razlicenN[401:600,3]
+pr100ena <- v100*c(TRUE,FALSE) 
+povpr100ena <- sum(pr100ena)/100  
+pr100dva <- v100*c(FALSE,TRUE)
+povpr100dva <- sum(pr100dva)/100
+
+#n=150
+v150 <- razlicenN[601:800,3]
+pr150ena <- v150*c(TRUE,FALSE) 
+povpr150ena <- sum(pr150ena)/100  
+pr150dva <- v150*c(FALSE,TRUE)
+povpr150dva <- sum(pr150dva)/100
+
+#n=200
+v200 <- razlicenN[801:1100,3]
+pr200ena <- v200*c(TRUE,FALSE) 
+povpr200ena <- sum(pr200ena)/100  
+pr200dva <- v200*c(FALSE,TRUE)
+povpr200dva <- sum(pr200dva)/100
+
+#n=300
+v300 <- razlicenN[1001:1200,3]
+pr300ena <- v300*c(TRUE,FALSE) 
+povpr300ena <- sum(pr300ena)/100  
+pr300dva <- v300*c(FALSE,TRUE)
+povpr300dva <- sum(pr300dva)/100
+
+#n=400
+v400 <- razlicenN[1201:1400,3]
+pr400ena <- v400*c(TRUE,FALSE) 
+povpr400ena <- sum(pr400ena)/100  
+pr400dva <- v10*c(FALSE,TRUE)
+povpr400dva <- sum(pr400dva)/100
+
+#n=500
+v500 <- razlicenN[1401:1600,3]
+pr500ena <- v500*c(TRUE,FALSE) 
+povpr500ena <- sum(pr500ena)/100  
+pr500dva <- v500*c(FALSE,TRUE)
+povpr500dva <- sum(pr500dva)/100
+
+#n=600
+v600 <- razlicenN[1601:1728,3]
+pr600ena <- v600*c(TRUE,FALSE) 
+povpr600ena <- sum(pr600ena)/64  
+pr600dva <- v600*c(FALSE,TRUE)
+povpr600dva <- sum(pr600dva)/64
+
+povp_problem1 <- c(povpr10ena, povpr50ena, povpr100ena, povpr150ena, povpr200ena,
+                   povpr300ena, povpr400ena, povpr500ena, povpr600ena)
+povp_problem2 <- c(povpr10dva, povpr50dva, povpr100dva, povpr150dva, povpr200dva, 
+                   povpr300dva, povpr400dva, povpr500dva, povpr600dva)
+
+#graf
+graf <- plot(povp_problem1, x = c(10, 50, 100, 150, 200, 300, 400, 500, 600),
+             xlab = "n", ylab = "Povprečje", pch=19,
+             main = "Povprečje rešitev", col = "blue", ylim = c(0, 600))
+points(povp_problem2, x = c(10, 50, 100, 150, 200, 300, 400, 500, 600), col="red", pch=19)
+
+legend("bottomright",c("Problem 1", "Problem2"), col = c("blue", "red"), pch=19, bg='lightgrey')
